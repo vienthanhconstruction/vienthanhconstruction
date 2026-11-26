@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tin tức & kiến thức xây dựng · Viên Thành</title><meta name="description" content="Kinh nghiệm xây nhà phố, biệt thự, thiết kế nội thất và tin tức từ Viên Thành: chia sẻ thực tế từ đội ngũ kiến trúc sư, kỹ sư.">
+<link rel="canonical" href="https://vienthanhconstruction.github.io/vienthanhconstruction/tin-tuc.html">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" href="img/favicon.png"><link rel="stylesheet" href="css/style.css"></head><body>
+<div class="top"><span>HOTLINE 0901 988 179</span><span>12 ĐƯỜNG SỐ 3, BÌNH HƯNG HÒA, TP.HCM</span><span>VIE / ENG</span></div>
+<header class="solid">
+<a class="logo" href="index.html"><img src="img/logo-vienthanh.png" alt="Logo Viên Thành" width="52" height="54" style="height:62px;width:auto"><div><b>VIÊN THÀNH</b><small>KIẾN TRÚC · XÂY DỰNG</small></div></a>
+<nav id="nav"><ul><li><a href="index.html">Trang chủ</a></li><li><a href="gioi-thieu.html">Giới thiệu</a></li><li><a href="dich-vu.html">Dịch vụ</a></li><li><a href="cong-trinh.html">Công trình</a></li><li><a href="tin-tuc.html" class=on>Tin tức</a></li><li><a href="lien-he.html">Liên hệ</a></li></ul></nav>
+<button class="burger" aria-label="Mở menu" aria-expanded="false">☰</button>
+</header>
+<div class="phead"><img src="img/minhhoa-hero.jpg" alt="" style="object-position:50% 40%"><div class="wrap"><div class="eyebrow">Tin tức</div><h1>Kiến thức xây nhà<br><i>từ người làm nghề.</i></h1></div></div>
+<section><div class="wrap"><div class="chips" id="chips"></div><div class="posts" id="posts"></div></div></section>
+<script>
+(function(){
+var box=document.getElementById('posts'),chips=document.getElementById('chips'),all=[];
+function fmt(d){var p=(d||'').split('-');return p.length===3?p[2]+'/'+p[1]+'/'+p[0]:''}
+function render(cat){
+  box.innerHTML='';
+  var list=all.filter(function(p){return cat==='all'||p.category===cat});
+  if(!list.length){var e=document.createElement('div');e.className='empty';e.style.gridColumn='1/-1';e.textContent='Chưa có bài viết nào. Hãy quay lại sau nhé.';box.appendChild(e);return}
+  list.forEach(function(p){
+    var a=document.createElement('a');a.className='pcard';a.href='bai-viet/'+p.slug+'.html';
+    var im=document.createElement('div');im.className='im';var img=document.createElement('img');img.loading='lazy';img.src=p.cover||'img/minhhoa-hero.jpg';img.alt=p.title;im.appendChild(img);
+    var t=document.createElement('div');t.className='pt';
+    var s=document.createElement('small');s.textContent=[p.category,fmt(p.date),p.readMin?p.readMin+' phút đọc':''].filter(Boolean).join(' · ');
+    var h=document.createElement('h3');h.textContent=p.title;
+    var d=document.createElement('p');d.textContent=p.description;
+    var m=document.createElement('span');m.className='more';m.textContent='Đọc tiếp →';
+    t.append(s,h,d,m);a.append(im,t);box.appendChild(a);
+  });
+}
+function chipsFor(){
+  var cats=[];all.forEach(function(p){if(p.category&&cats.indexOf(p.category)<0)cats.push(p.category)});
+  chips.innerHTML='';if(cats.length<2)return;
+  ['all'].concat(cats).forEach(function(c,i){
+    var b=document.createElement('button');b.textContent=c==='all'?'Tất cả':c;if(i===0)b.className='on';
+    b.onclick=function(){[].forEach.call(chips.children,function(x){x.className=''});b.className='on';render(c)};chips.appendChild(b);
+  });
+}
+fetch('data/posts.json?v='+Date.now()).then(function(r){return r.json()}).then(function(j){
+  all=(j.posts||[]).sort(function(a,b){return (b.date||'').localeCompare(a.date||'')});chipsFor();render('all');
+}).catch(function(){render('all')});
+})();
+</script>
+<footer>
+<div><a class="logo" href="index.html" style="margin-bottom:18px"><img src="img/logo-vienthanh.png" alt="Logo Viên Thành" width="52" height="54" style="height:62px;width:auto"><div><b>VIÊN THÀNH</b></div></a>Công ty TNHH Kiến Trúc Xây Dựng Viên Thành<br>Mã số thuế: 0318 245 2277<br>Trụ sở: 12 đường số 3, Bình Hưng Hòa, TP.HCM<br>Hotline: <a href="tel:0901988179">0901 988 179</a></div>
+<div><h6>Khám phá</h6><a href="gioi-thieu.html">Giới thiệu</a><br><a href="dich-vu.html">Dịch vụ</a><br><a href="cong-trinh.html">Công trình</a><br><a href="tin-tuc.html">Tin tức</a><br><a href="lien-he.html">Liên hệ</a></div>
+<div><h6>Kết nối</h6><a href="lien-he.html">Gửi yêu cầu tư vấn</a><br><a href="tel:0901988179">Gọi 0901 988 179</a></div>
+<div class="copy"><span>© VIÊN THÀNH · VẸN CHỮ TÂM, THÀNH CHỮ TÍN</span><span>BẢN XEM TRƯỚC · MỘT SỐ HÌNH ẢNH CHỈ MANG TÍNH MINH HỌA (PEXELS)</span></div>
+</footer>
+<script src="js/main.js"></script></body></html>
